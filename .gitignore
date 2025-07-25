@@ -1,3 +1,5 @@
 /tomcat
 /.gradle
 /build
+/src/main/webapp/fastapi-llm-backend/__pycache__
+/.venv
