@@ -4,3 +4,4 @@
 /src/main/webapp/fastapi-llm-backend/__pycache__
 /.venv
 /.vscode
+/bin
