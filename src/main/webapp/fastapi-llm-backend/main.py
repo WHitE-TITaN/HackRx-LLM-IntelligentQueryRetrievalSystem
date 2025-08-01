@@ -4,16 +4,21 @@ from typing import List, Dict
 
 app = FastAPI()
 
-class QueryRequest(BaseModel):
-    query: str
-    documents: List[str]  # base64 or plain text if already parsed
+class Payload(BaseModel):
+    name: str
+    age: int
 
-@app.post("/hackrx/run")
-async def run_model(request: QueryRequest):
-    # ✨ Do query parsing, semantic search, and decision making
+@app.post("/process")
+async def process_data(payload: Payload):
+    greeting = f"Hello {payload.name}, you are {payload.age} years old!"
+    is_adult = payload.age >= 18
+
     return {
-        "success": True,
-        "decision": "approved",
-        "amount": "₹40,000",
-        "justification": "Clause 3.2 states that knee surgeries are covered for policies > 2 months."
+        "message": greeting,
+        "adult": is_adult,
+        "length_of_name": len(payload.name)
     }
+
+
+if __name__ == "__main__":
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
