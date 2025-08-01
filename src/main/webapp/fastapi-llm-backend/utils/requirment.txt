@@ -4,3 +4,4 @@ transformers
 sentence-transformers
 pdfplumber
 python-docx
+uvicorn
