@@ -40,7 +40,7 @@ public class requestHandler extends HttpServlet {
         """;
 
         HttpRequest request = HttpRequest.newBuilder()
-          .uri(URI.create("http://localhost:8000/process"))
+          .uri(URI.create("https://hackrx-llm.onrender.com/process"))
           .header("Content-Type", "application/json")
           .POST(HttpRequest.BodyPublishers.ofString(jsonQuery)) 
           .build();

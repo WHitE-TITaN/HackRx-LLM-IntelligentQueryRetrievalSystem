@@ -1,18 +1,27 @@
 plugins {
   id 'java'
+  id 'org.gretty' version '4.1.0'
 }
 
 group = 'HackRx-LLM-IntelligentQueryRetrievalSystem'
 version = '1.0'
 
 repositories {
+   mavenCentral()
     flatDir {
         dirs 'lib' 
     }
 }
 
+gretty {
+    httpPort = System.getenv('PORT')?.toInteger() ?: 8080
+    contextPath = '/'
+}
+
 dependencies {
   compileOnly name: 'javax.servlet-api'
+  compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    compileOnly 'jakarta.websocket:jakarta.websocket-api:2.0.0'
 }
 
 task copyClasses(type : Copy){
