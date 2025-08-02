@@ -7,6 +7,7 @@ group = 'HackRx-LLM-IntelligentQueryRetrievalSystem'
 version = '1.0'
 
 repositories {
+   mavenCentral()
     flatDir {
         dirs 'lib' 
     }
@@ -19,6 +20,8 @@ gretty {
 
 dependencies {
   compileOnly name: 'javax.servlet-api'
+  compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+    compileOnly 'jakarta.websocket:jakarta.websocket-api:2.0.0'
 }
 
 task copyClasses(type : Copy){
