@@ -13,11 +13,3 @@ class TextPullOut:
           text += page_text + "\n"
 
     return text
-
-def main():
-  obj = TextPullOut()
-  text = obj.extractText("https://drive.google.com/uc?export=download&id=1AJStH_SArQdomXZoaygD9GEWlShnLaBp")
-  print(text)
-
-if __name__ == "__main__":
-    main()
