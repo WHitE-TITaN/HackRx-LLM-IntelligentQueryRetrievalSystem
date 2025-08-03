@@ -5,3 +5,4 @@
 /.venv
 /.vscode
 /bin
+/src/main/webapp/fastapi-llm-backend/module/__pycache__
