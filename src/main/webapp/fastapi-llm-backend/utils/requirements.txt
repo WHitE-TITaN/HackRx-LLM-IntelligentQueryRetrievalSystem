@@ -5,5 +5,4 @@ sentence-transformers
 pdfplumber
 requests
 python-docx
-BytesIO
 uvicorn
