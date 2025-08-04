@@ -22,7 +22,15 @@ class VectorDbHandle:
         batch_size = 32
         for i in range(0, len(textChunk), batch_size):
             batch_text = textChunk[i:i + batch_size]
-            embeddings = embbedCohere.embed(texts=batch_text, model="embed-english-v3.0").embeddings
+            try:
+                embeddings = embbedCohere.embed(
+                    texts=batch_text, 
+                    model="embed-english-v3.0", 
+                    input_type="search_document"
+                    ).embeddings
+            except cohere.CohereAPIError as e:
+                print(f"❌ Cohere API error: {e}")
+                continue
 
             vectors = [
               {
@@ -32,7 +40,10 @@ class VectorDbHandle:
               }
               for j, embedding in enumerate(embeddings)
             ]
-            index.upsert(vectors=vectors)
+            try:
+                index.upsert(vectors=vectors)
+            except Exception as e:
+                print(f"❌ Failed to upsert to Pinecone: {e}")
             print("✅ Embeddings uploaded to Pinecone!")
 
 
