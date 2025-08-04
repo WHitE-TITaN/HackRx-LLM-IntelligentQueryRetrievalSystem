@@ -12,15 +12,12 @@ class VectorDbHandle:
         if not self.pineCone_key or not self.cohere_key:
           raise ValueError("Missing API keys in environment variables.")
 
+        self.pinecone = Pinecone(api_key=self.pineCone_key)
+        self.index_name = "hackrx"
 
     def createEmbedding(self, textChunk: list[str], file_id: str) -> list:
         embbedCohere = cohere.Client(self.cohere_key)
-
-        pinecone.init(
-            api_key=self.pineCone_key,
-            environment=self.pineCone_env
-        )
-        index = Pinecone.Index("hackrx")
+        index = self.pinecone.Index(self.index_name)
 
         batch_size = 32
         for i in range(0, len(textChunk), batch_size):
@@ -35,7 +32,7 @@ class VectorDbHandle:
               }
               for j, embedding in enumerate(embeddings)
             ]
-            index.upsert(vectors)
+            index.upsert(vectors=vectors)
             print("✅ Embeddings uploaded to Pinecone!")
 
 
