@@ -20,7 +20,7 @@ class VectorDbHandle:
             api_key=self.pineCone_key,
             environment=self.pineCone_env
         )
-        index = pinecone.Index("hackrx")
+        index = Pinecone.Index("hackrx")
 
         batch_size = 32
         for i in range(0, len(textChunk), batch_size):
