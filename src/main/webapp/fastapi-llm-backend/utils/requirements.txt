@@ -4,5 +4,7 @@ transformers
 sentence-transformers
 pdfplumber
 requests
+cohere
+pinecone
 python-docx
-uvicorn
+python-dotenv

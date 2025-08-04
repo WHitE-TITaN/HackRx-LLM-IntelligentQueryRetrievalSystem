@@ -4,6 +4,8 @@
 > for project to work it need basic libraries use this command to install them
 
 ```bash
+python -m venv venv
+venv\Script\Activate
 cd src/main/webapp/fastapi-llm-backend/utils
 pip install -r requirment.txt 
 ```
@@ -23,13 +25,6 @@ setx API_KEY_Cohere "your_secret_key"
 ```
 
 ### run python in virtual enviroment.
-```bash
-#after setup we will need 
-python -m venv venv
-venv\Script\Activate
-uvicorn main:app --reload
-```
-
 > run Python Backend First 
 
 ``` bash
