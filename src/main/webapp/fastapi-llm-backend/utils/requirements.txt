@@ -5,6 +5,8 @@ sentence-transformers
 pdfplumber
 requests
 cohere
+numpy
+google-generativeai
 pinecone
 python-docx
 python-dotenv
