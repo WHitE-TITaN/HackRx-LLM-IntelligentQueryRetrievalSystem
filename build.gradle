@@ -29,6 +29,7 @@ dependencies {
 } 
 
 task copyClasses(type : Copy){
+  duplicatesStrategy = DuplicatesStrategy.EXCLUD
   from 'build/classes/java/main'
   into 'src/main/webapp/WEB-INF/classes'
 }
