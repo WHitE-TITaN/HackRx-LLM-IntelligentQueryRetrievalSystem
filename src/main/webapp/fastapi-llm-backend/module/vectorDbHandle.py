@@ -30,7 +30,7 @@ class VectorDbHandle:
         batch_size = 32
 
         fileCheck = index.fetch(ids=[f"{file_id}-chunk-0"])
-        exists = bool(fileCheck.vectors)
+        exists = bool(fileCheck.vectors) 
 
         if exists:
             

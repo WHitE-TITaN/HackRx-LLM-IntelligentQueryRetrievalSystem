@@ -9,7 +9,7 @@ from google.generativeai import GenerativeModel, configure
 import os
 
 app = FastAPI()
-
+ 
 class Payload(BaseModel):
     documents: str  
     key: str         

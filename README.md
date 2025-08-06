@@ -19,8 +19,15 @@ setx PINECONE_ENV "your_hosted_region"
 # >SUCCESS: Specified value was saved.
 
 setx API_KEY_GeminiAi "your Gemini api key"
+# >SUCCESS: Specified value was saved.
 
-setx API_KEY_Cohere "your_secret_key"
+setx  mongo_auth "your api key"
+# >SUCCESS: Specified value was saved.
+
+setx default_token "your key for normal users"
+# >SUCCESS: Specified value was saved.
+
+setx API_KEY_Cohere "your_secret_key" 
 # >SUCCESS: Specified value was saved.
 #this set the enviromewnt variable that can be use later.
 ```

@@ -1,8 +1,13 @@
 /tomcat
 /.gradle
+
 /build
+
+"*.war"
+
+/gradle
 /src/main/webapp/fastapi-llm-backend/__pycache__
 /.venv
 /.vscode
 /bin
-/src/main/webapp/fastapi-llm-backend/module/__pycache__
+/src/main/webapp/fastapi-llm-backend/module/__pycache__ 

@@ -9,4 +9,4 @@ numpy
 google-generativeai
 pinecone
 python-docx
-python-dotenv
+python-dotenv 
