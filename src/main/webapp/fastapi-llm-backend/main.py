@@ -5,7 +5,7 @@ from module import docHandle
 from module import vectorDbHandle
 
 #gemini for response generation
-import google.generativeai as genai
+from google.generativeai import GenerativeModel, configure
 import os
 
 app = FastAPI()
@@ -25,8 +25,8 @@ async def process_data(payload: Payload):
     KEY_GEMINI = os.getenv("API_KEY_GeminiAi")
     if not KEY_GEMINI:
         return {"message": "❌ API Key for Gemini AI not found in environment variables"}
-    genai.configure(api_key = KEY_GEMINI)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    configure(api_key = KEY_GEMINI)
+    model = GenerativeModel("gemini-1.5-flash")
 
 
     #document handling and chunking
@@ -43,14 +43,16 @@ async def process_data(payload: Payload):
     #chunk retreval and answer generation
     answerByLLM = []
     for i in range(0, len(question)):
-        context = []
         matched_chunks = vector_db.retreaveData(question[i])
-        for chunk in matched_chunks:
-            context.append(chunk["text"])
 
-        prompt = f"Answer the question based on the context provided.\n\nContext:\n{context}\n\nQuestion: {question[i]}"
+        prompt = f"Answer the question based on the context provided.\n\nContext:\n"
+        for chunk in matched_chunks:
+            prompt += f"{chunk['text']}\n\n"
+
+        prompt += f"Question: {question[i]}"
+
         try:
-            response = model.generate_content(prompt)
+            response = await model.generate_content(prompt)
             answerByLLM.append(response.text)
         except Exception as e:
             print(f"❌ Error generating response: {e}")
