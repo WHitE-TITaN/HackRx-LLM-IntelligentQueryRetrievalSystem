@@ -10,7 +10,7 @@ version = '1.0'
 repositories {
   mavenCentral()
   flatDir {
-    dirs 'lib' 
+    dirs 'lib'  
   }
 }
 
