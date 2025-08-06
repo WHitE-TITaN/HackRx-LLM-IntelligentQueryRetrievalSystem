@@ -27,7 +27,7 @@ setx  mongo_auth "your api key"
 setx default_token "your key for normal users"
 # >SUCCESS: Specified value was saved.
 
-setx API_KEY_Cohere "your_secret_key"
+setx API_KEY_Cohere "your_secret_key" 
 # >SUCCESS: Specified value was saved.
 #this set the enviromewnt variable that can be use later.
 ```
