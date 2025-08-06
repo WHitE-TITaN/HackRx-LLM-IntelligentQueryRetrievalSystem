@@ -1,0 +1,14 @@
+{
+  "build": {
+    "env": {
+      "GRADLE_OPTS": "-Dorg.gradle.jvmargs=-Xmx1024m"
+    },
+    "commands": [
+      "./gradlew clean war"
+    ]
+  },
+  "start": {
+    "cmd": "docker build -t myapp . && docker run -p 8080:8080 myapp",
+    "port": 8080
+  }
+}
