@@ -1,11 +1,9 @@
 /tomcat
 /.gradle
 
-/build/classes
-/build/tmp
-/build/generated
-/build/reports
 /build
+
+"*.war"
 
 /gradle
 /src/main/webapp/fastapi-llm-backend/__pycache__
