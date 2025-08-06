@@ -37,7 +37,7 @@ async def process_data(payload: Payload):
 
     #create embedding and upload to vector db
     vector_db = vectorDbHandle.VectorDbHandle()
-    vector_db.createEmbedding(chunked_text, file_id)
+    await vector_db.createEmbedding(chunked_text, file_id)
     
 
     #chunk retreval and answer generation
@@ -47,12 +47,12 @@ async def process_data(payload: Payload):
 
         prompt = f"Answer the question based on the context provided.\n\nContext:\n"
         for chunk in matched_chunks:
-            prompt += f"{chunk['text']}\n\n"
+            prompt += f"{chunk}\n\n"
 
         prompt += f"Question: {question[i]}"
 
         try:
-            response = await model.generate_content(prompt)
+            response = model.generate_content(prompt)
             answerByLLM.append(response.text)
         except Exception as e:
             print(f"❌ Error generating response: {e}")

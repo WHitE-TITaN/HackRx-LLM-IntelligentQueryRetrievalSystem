@@ -18,6 +18,7 @@ setx API_KEY_PineCone "your_secret_key"
 setx PINECONE_ENV "your_hosted_region"
 # >SUCCESS: Specified value was saved.
 
+setx API_KEY_GeminiAi "your Gemini api key"
 
 setx API_KEY_Cohere "your_secret_key"
 # >SUCCESS: Specified value was saved.

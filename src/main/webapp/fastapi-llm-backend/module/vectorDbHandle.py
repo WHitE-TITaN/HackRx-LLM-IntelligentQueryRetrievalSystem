@@ -23,14 +23,14 @@ class VectorDbHandle:
 
 
 
-    def createEmbedding(self, textChunk: list[str], file_id: str) -> list:
+    async def createEmbedding(self, textChunk: list[str], file_id: str) -> list:
         embbedCohere = cohere.Client(self.cohere_key)
         index = self.pinecone.Index(self.index_name)
 
         batch_size = 32
 
         fileCheck = index.fetch(ids=[f"{file_id}-chunk-0"])
-        exists = bool(fileCheck.dict().get("vectors"))
+        exists = bool(fileCheck.vectors)
 
         if exists:
             
