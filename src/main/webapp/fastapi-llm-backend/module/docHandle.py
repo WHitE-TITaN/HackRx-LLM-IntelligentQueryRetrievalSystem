@@ -9,13 +9,13 @@ class TextPullOut:
     chunks = []
     for i in range(0, len(words), chunk_size - overlap):
         chunk = " ".join(words[i:i + chunk_size])
-        chunks.append(chunk)
+        chunks.append(chunk) 
     return chunks
 
   def extractText(self, linkFile: str) -> str:
     file = requests.get(linkFile)
     with pdfReader.open(BytesIO(file.content)) as pdf:
-      text = ""
+      text = "" 
       for page in pdf.pages:
         page_text = page.extract_text()
         if page_text:
