@@ -28,10 +28,3 @@ dependencies {
   implementation 'org.json:json:20210307'
 } 
 
-task copyClasses(type : Copy){
-  from 'build/classes/java/main'
-  into 'src/main/webapp/WEB-INF/classes'
-}
-
-build.finalizedBy(copyClasses)
-
