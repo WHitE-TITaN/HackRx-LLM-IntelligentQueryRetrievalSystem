@@ -20,13 +20,13 @@ gretty {
 }
 
 dependencies {
-  compileOnly name: 'javax.servlet-api'
+  compileOnly files('lib/javax.servlet-api.jar')
   compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
-  providedCompile 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+  //compileOnly  'jakarta.servlet:jakarta.servlet-api:5.0.0'
   compileOnly 'jakarta.websocket:jakarta.websocket-api:2.0.0'
   implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
   implementation 'org.json:json:20210307'
-}
+} 
 
 task copyClasses(type : Copy){
   from 'build/classes/java/main'
