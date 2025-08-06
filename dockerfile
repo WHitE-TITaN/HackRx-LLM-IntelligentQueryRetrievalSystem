@@ -1,14 +1,20 @@
-# Use official Tomcat base image
-FROM tomcat:10.1-jdk21-temurin
+FROM gradle:8.5-jdk17 AS builder
 
-# Set working directory
-WORKDIR /usr/local/tomcat
+# Copy source and build
+COPY . /app
+WORKDIR /app
 
-# Remove default webapps (optional but cleaner)
-RUN rm -rf webapps/*
+# Build WAR
+RUN gradle clean build
 
-# Copy your WAR file into Tomcat webapps directory
-COPY build/libs/*.war webapps/ROOT.war
+# Use Tomcat to run WAR
+FROM tomcat:9.0-jdk17
 
-# Expose the port (Railway will use its own)
+# Remove default webapps
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy WAR from builder image
+COPY --from=builder /app/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
+CMD ["catalina.sh", "run"]

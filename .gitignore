@@ -5,6 +5,7 @@
 /build/tmp
 /build/generated
 /build/reports
+/build
 
 /gradle
 /src/main/webapp/fastapi-llm-backend/__pycache__
