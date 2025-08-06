@@ -27,12 +27,3 @@ dependencies {
   implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
   implementation 'org.json:json:20210307'
 } 
-
-task copyClasses(type : Copy){
-  duplicatesStrategy = DuplicatesStrategy.EXCLUD
-  from 'build/classes/java/main'
-  into 'src/main/webapp/WEB-INF/classes'
-}
-
-build.finalizedBy(copyClasses)
-
