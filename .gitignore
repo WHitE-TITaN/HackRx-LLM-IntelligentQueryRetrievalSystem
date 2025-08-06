@@ -1,6 +1,12 @@
 /tomcat
 /.gradle
-/build
+
+/build/classes
+/build/tmp
+/build/generated
+/build/reports
+
+/gradle
 /src/main/webapp/fastapi-llm-backend/__pycache__
 /.venv
 /.vscode
