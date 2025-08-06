@@ -5,7 +5,7 @@ from module import docHandle
 from module import vectorDbHandle
 
 #gemini for response generation
-import google.generativeai as genai
+from google.generativeai import GenerativeModel, configure
 import os
 
 app = FastAPI()
@@ -25,8 +25,8 @@ async def process_data(payload: Payload):
     KEY_GEMINI = os.getenv("API_KEY_GeminiAi")
     if not KEY_GEMINI:
         return {"message": "❌ API Key for Gemini AI not found in environment variables"}
-    genai.configure(api_key = KEY_GEMINI)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    configure(api_key = KEY_GEMINI)
+    model = GenerativeModel("gemini-1.5-flash")
 
 
     #document handling and chunking
