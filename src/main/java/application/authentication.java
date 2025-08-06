@@ -7,7 +7,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-class authentication {
+public class authentication {
   private static final String MONGO_URI = System.getenv("mongo_auth");
   
   public static boolean AuthToken(String inTocken) {

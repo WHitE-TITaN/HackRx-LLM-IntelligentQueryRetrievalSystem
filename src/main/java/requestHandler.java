@@ -1,4 +1,4 @@
-package application;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
+
 import application.authentication;
 
 @WebServlet("/hackrx/run")
@@ -76,7 +77,9 @@ public class requestHandler extends HttpServlet {
             actualKey = userKey;  // fallback if it's just a raw key
         }
 
-        if(!authentication.AuthToken(actualKey)){
+        boolean isValidKey = authentication.AuthToken(actualKey);
+
+        if(!isValidKey){
           PrintWriter out = Response.getWriter();
           
           JSONObject errorResponse = new JSONObject();
