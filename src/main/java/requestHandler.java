@@ -34,8 +34,14 @@ public class requestHandler extends HttpServlet {
         HttpClient client = HttpClient.newHttpClient();
         String jsonQuery = """
         {
-          "name": "hackrx",
-          "age": 1
+          "documents": "https://drive.google.com/uc?export=download&id=1AJStH_SArQdomXZoaygD9GEWlShnLaBp",
+          "key": "**********",
+          "question": [
+                      "what is the Address of the company?,
+                      "what is the contact number of the company?",
+                      "what is the email address of the company?",
+                      "what is the website of the company?"
+                      ]
         }
         """;
 
