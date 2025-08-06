@@ -37,7 +37,7 @@ public class requestHandler extends HttpServlet {
           "documents": "https://drive.google.com/uc?export=download&id=1AJStH_SArQdomXZoaygD9GEWlShnLaBp",
           "key": "**********",
           "question": [
-                      "what is the Address of the company?,
+                      "what is the Address of the company?",
                       "what is the contact number of the company?",
                       "what is the email address of the company?",
                       "what is the website of the company?"
@@ -46,7 +46,7 @@ public class requestHandler extends HttpServlet {
         """;
 
         HttpRequest request = HttpRequest.newBuilder()
-          .uri(URI.create("https://hackrx-llm.onrender.com/process"))
+          .uri(URI.create("https://hackrx-llm.onrender.com/process"))      
           .header("Content-Type", "application/json")
           .POST(HttpRequest.BodyPublishers.ofString(jsonQuery)) 
           .build();
