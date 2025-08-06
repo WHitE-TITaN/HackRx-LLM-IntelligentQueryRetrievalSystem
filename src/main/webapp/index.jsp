@@ -38,7 +38,7 @@
               "Authorization": "Bearer " + System.getenv("default_token")
             },
             body: JSON.stringify(data)
-          });
+          }); 
 
           const result = await response.text(); // assuming you return raw HTML or JSON
           document.body.innerHTML += `<pre>${result}</pre>`;

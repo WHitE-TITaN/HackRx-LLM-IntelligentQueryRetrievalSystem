@@ -18,11 +18,11 @@ class authentication {
       Document query = new Document("key", inTocken);
       Document result = collection.find(query).first();
 
-      return result != null;
+      return result != null; 
     }
     catch (Exception e) {
       e.printStackTrace();
       return false;
     }
-  }
+  } 
 }
