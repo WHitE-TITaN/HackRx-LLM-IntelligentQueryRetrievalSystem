@@ -40,7 +40,7 @@
                 };
 
                 try {
-                    const response = await fetch("hackrx/run", {
+                    const response = await fetch("api/v1", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

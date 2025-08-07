@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 import application.authentication;
 
-@WebServlet("/hackrx/run")
+@WebServlet("/api/v1")
 public class requestHandler extends HttpServlet {
   @Override
     protected  void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
@@ -96,7 +96,7 @@ public class requestHandler extends HttpServlet {
 
         String jsonQuery = jsonObject.toString();
         HttpRequest request = HttpRequest.newBuilder()
-          .uri(URI.create("https://hackrx-llm.onrender.com/process"))      
+          .uri(URI.create("https://hackrx-llm.onrender.com/hackrx/run"))      
           .header("Content-Type", "application/json")
           .POST(HttpRequest.BodyPublishers.ofString(jsonQuery)) 
           .build();
