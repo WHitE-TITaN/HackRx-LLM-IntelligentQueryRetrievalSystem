@@ -1,7 +1,7 @@
 plugins {
   id 'java'
   id 'war'
-  id 'org.gretty' version '4.1.0'
+  id 'org.gretty' version '3.0.9'
 }
 
 group = 'HackRx-LLM-IntelligentQueryRetrievalSystem'
@@ -17,13 +17,14 @@ repositories {
 gretty {
     httpPort = System.getenv('PORT')?.toInteger() ?: 8080
     contextPath = '/'
+    servletContainer = 'tomcat9'
 }
 
 dependencies {
   compileOnly files('lib/javax.servlet-api.jar')
-  compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+  //compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
   //compileOnly  'jakarta.servlet:jakarta.servlet-api:5.0.0'
-  compileOnly 'jakarta.websocket:jakarta.websocket-api:2.0.0'
+  //compileOnly 'jakarta.websocket:jakarta.websocket-api:2.0.0'
   implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
   implementation 'org.json:json:20210307'
 } 
