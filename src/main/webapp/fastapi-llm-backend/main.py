@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Request, HTTPException, Header
+from fastapi import FastAPI, Request, Header, HTTPException 
 from pydantic import BaseModel
 from typing import List, Dict
 from module import docHandle
 from module import vectorDbHandle
 from module import authentication
+import uvicorn
 
 from typing import Optional
 
@@ -14,12 +15,11 @@ import os
 app = FastAPI()
  
 class Payload(BaseModel):
-    documents: str  
-    key: str         
-    question: list[str] 
+    documents: str        
+    questions: list[str] 
 
 @app.post("/hackrx/run")
-async def process_data(request: SubmissionRequest,
+async def process_data(request: Payload,
     authorization: Optional[str] = Header(None)):
 
 
@@ -79,4 +79,4 @@ async def process_data(request: SubmissionRequest,
             }
 
 if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
