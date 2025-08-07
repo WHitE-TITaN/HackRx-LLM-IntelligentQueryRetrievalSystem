@@ -1,9 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException, Header
 from pydantic import BaseModel
 from typing import List, Dict
 from module import docHandle
 from module import vectorDbHandle
 from module import authentication
+
+from typing import Optional
 
 #gemini for response generation
 from google.generativeai import GenerativeModel, configure
