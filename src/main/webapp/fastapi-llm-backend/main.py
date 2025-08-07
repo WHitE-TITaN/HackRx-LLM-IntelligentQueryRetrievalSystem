@@ -27,7 +27,7 @@ async def process_data(request: Payload,
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     token = authorization.split(" ")[1]
-    securityCheck = authentication.authenticate()
+    securityCheck = authentication.Authenticate()
     if not securityCheck.varify_api_key(token):
         raise HTTPException(status_code=403, detail="Forbidden: Invalid API Key")
 
