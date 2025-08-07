@@ -1,13 +1,11 @@
-# Use a base image with Tomcat 9, which supports the javax.servlet API
-FROM tomcat:9.0-jdk17
+# Stage 1: Build the WAR file
+FROM gradle:7.6-jdk17 AS builder
+WORKDIR /app
+COPY . .
+RUN gradle clean war
 
-# Remove default apps
-RUN rm -rf /usr/local/tomcat/webapps/*
-
-# Copy your newly built WAR file to the webapps directory
-# The `*` here is safe now because you know the WAR file exists.
-COPY build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
-
+# Stage 2: Deploy to Tomcat
+FROM tomcat:9.0
+COPY --from=builder /app/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
