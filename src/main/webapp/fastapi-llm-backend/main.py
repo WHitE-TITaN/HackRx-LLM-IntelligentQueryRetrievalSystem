@@ -1,8 +1,9 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict
 from module import docHandle
 from module import vectorDbHandle
+from module import authentication
 
 #gemini for response generation
 from google.generativeai import GenerativeModel, configure
@@ -15,11 +16,21 @@ class Payload(BaseModel):
     key: str         
     question: list[str] 
 
-@app.post("/process")
-async def process_data(payload: Payload):
-    link = payload.documents
-    key = payload.key
-    question = payload.question
+@app.post("/hackrx/run")
+async def process_data(request: SubmissionRequest,
+    authorization: Optional[str] = Header(None)):
+
+
+    if not authorization or not authorization.startswith("Bearer "):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    token = authorization.split(" ")[1]
+    securityCheck = authentication.authenticate()
+    if not securityCheck.varify_api_key(token):
+        raise HTTPException(status_code=403, detail="Forbidden: Invalid API Key")
+
+    link = request.documents
+    question = request.questions
     
     #getting key from Enviroment Variables
     KEY_GEMINI = os.getenv("API_KEY_GeminiAi")
@@ -61,10 +72,9 @@ async def process_data(payload: Payload):
     
 
     #to do the delete so every file data after all question request is processed.
-    return {"message": "✅Data processed successfully", 
-            "file_id": file_id,
-            "chunks_uploaded": len(chunked_text),
-            "ans": answerByLLM}
+    return {
+            "answers": answerByLLM
+            }
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
