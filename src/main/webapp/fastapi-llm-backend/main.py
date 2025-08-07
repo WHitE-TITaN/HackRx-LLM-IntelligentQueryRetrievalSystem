@@ -13,6 +13,10 @@ from google.generativeai import GenerativeModel, configure
 import os
 
 app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "API is running 🎉"}
  
 class Payload(BaseModel):
     documents: str        
@@ -79,4 +83,4 @@ async def process_data(request: Payload,
             }
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
