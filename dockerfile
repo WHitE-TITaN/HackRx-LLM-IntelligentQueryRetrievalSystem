@@ -8,3 +8,4 @@ RUN gradle clean war
 FROM tomcat:9.0
 COPY --from=builder /app/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
+
