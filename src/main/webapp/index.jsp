@@ -40,7 +40,7 @@
                 };
 
                 try {
-                    const response = await fetch("api/v1", {
+                    const response = await fetch("https://hackrx-llm.onrender.com/hackrx/run", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
