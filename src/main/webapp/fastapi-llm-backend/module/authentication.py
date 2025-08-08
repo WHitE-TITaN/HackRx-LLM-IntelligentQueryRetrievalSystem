@@ -1,42 +1,16 @@
-from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure
-import ssl
+import os
 
-import certifi
 
 class Authenticate:
-    def __init__(self, uri):
-        print(ssl.OPENSSL_VERSION)
-        try:
-            # Create MongoDB client with TLS
-            self.client = MongoClient(
-                uri, tls=True, 
-                tlsCAFile=certifi.where(), 
-                serverSelectionTimeoutMS=5000
-            )
-            
-            # Test connection
-            self.client.admin.command('ping')
-            print("✅ Successfully connected to MongoDB Atlas")
-        
-        except ConnectionFailure as e:
-            print(f"❌ Could not connect to MongoDB: {e}")
-            self.client = None
+    def __init__(self, uri: str | None = None):
+        self.accepted_key = os.getenv("ACCEPTED_KEY")
+        self.secondary_key = os.getenv("SECONDARY_KEY")
 
-    def verify_api_key(self, api_key):
-        if not self.client:
-            print("❌ No MongoDB connection.")
-            return False
-        
-        db = self.client["ApiKey"]
-        collection = db["keys"]  # Replace with your collection name
-        
-        result = collection.find_one({"key": api_key})
-        
-        if result:
-            print("✅ API Key is valid.")
+    def verify_api_key(self, api_key: str) -> bool:
+        if api_key == self.accepted_key:
             return True
-        else:
-            print("❌ API Key is invalid.")
-            return False
+        if api_key == self.secondary_key:
+            return True
+        return False
+
 
