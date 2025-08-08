@@ -31,8 +31,8 @@ async def process_data(request: Payload,
         raise HTTPException(status_code=401, detail="Unauthorized")
 
     token = authorization.split(" ")[1]
-    securityCheck = authentication.Authenticate()
-    if not securityCheck.varify_api_key(token):
+    securityCheck = authentication.Authenticate(os.getenv("API_KEY_MongoDb"))
+    if not securityCheck.verify_api_key(token):
         raise HTTPException(status_code=403, detail="Forbidden: Invalid API Key")
 
     link = request.documents

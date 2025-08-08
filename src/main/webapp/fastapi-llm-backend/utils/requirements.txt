@@ -11,3 +11,4 @@ pinecone
 python-docx
 python-dotenv 
 pymongo[srv]
+certifi
