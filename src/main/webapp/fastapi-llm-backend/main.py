@@ -9,6 +9,11 @@ import psutil
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "API is running 🎉"}
+
+
 class Payload(BaseModel):
     documents: str        
     questions: list[str] 
