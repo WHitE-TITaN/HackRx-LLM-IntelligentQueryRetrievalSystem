@@ -12,3 +12,4 @@ python-docx
 python-dotenv 
 pymongo[srv]
 certifi
+psutil
